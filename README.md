@@ -3,5 +3,5 @@
 ## Инструменты
 | Инструмент | Описание |
 | ------ | ------ |
-| Terraform | [terraform/README.md](https://github.com/bambarambambum/VisualOffice/blob/master/terraform/README.md) |
-| Helm Charts | [kubernetes/README.md](https://github.com/bambarambambum/VisualOffice/blob/master/kubernetes/README.md) |
+| Terraform | [terraform/README.md](https://github.com/bambarambambum/VisualOffice/tree/master/terraform) |
+| Helm Charts | [kubernetes/README.md](https://github.com/bambarambambum/VisualOffice/blob/master/kubernetes) |
