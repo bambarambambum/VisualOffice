@@ -1,0 +1,12 @@
+databaseHost:
+databaseUser: visualoffice
+databaseUserPassword: VeryStrongPassword
+databaseName: visualoffice
+
+service:
+  internalPort: 80
+  externalPort: 80
+
+image:
+  repository: androsovm/usersapi
+  tag: test

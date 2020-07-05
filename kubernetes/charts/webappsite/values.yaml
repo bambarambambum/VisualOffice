@@ -1,0 +1,9 @@
+service:
+  internalPort: 80
+  externalPort: 80
+  
+image:
+  repository: androsovm/webappsite
+  tag: test
+
+usersapiHost:

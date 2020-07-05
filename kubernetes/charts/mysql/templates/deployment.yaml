@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "mysql.fullname" . }}
+  labels:
+    app: visualoffice
+    component: mysql
+    release: {{ .Release.Name}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: visualoffice
+      component: mysql
+      release: {{ .Release.Name}}
+  template:
+    metadata:
+      name: mysql
+      labels:
+        app: visualoffice
+        component: mysql
+        release: {{ .Release.Name}}
+    spec:
+      containers:
+      - image: androsovm/mysql:latest
+        name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: {{ .Values.mysqlRootPassword}} #VeryStrongPassword
+        - name: MYSQL_DATABASE
+          value: {{ .Values.mysqlDatabase}} #visualoffice
+        - name: MYSQL_USER
+          value: {{ .Values.mysqlUser}} #visualoffice
+        - name: MYSQL_PASSWORD
+          value: {{ .Values.mysqlPassword}} #VeryStrongPassword
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: {{ .Chart.Name}}-pvc

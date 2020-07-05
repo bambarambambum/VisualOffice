@@ -1,0 +1,7 @@
+name: mysql
+version: 1.0.0
+description: MySQL Database for VisualOffice app
+maintainers:
+- name: Mikhail Androsov
+  email: Mikh.Androsov@gmail.com
+appVersion: 1.0

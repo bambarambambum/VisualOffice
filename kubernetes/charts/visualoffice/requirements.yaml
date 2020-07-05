@@ -1,0 +1,13 @@
+---
+dependencies:
+  - name: webappsite
+    version: "1.0.0"
+    repository: "file://../webappsite"
+
+  - name: usersapi
+    version: "1.0.0"
+    repository: "file://../usersapi"
+
+  - name: mysql
+    version: "1.0.0"
+    repository: "file://../mysql"

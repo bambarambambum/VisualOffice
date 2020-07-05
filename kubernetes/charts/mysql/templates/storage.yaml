@@ -1,0 +1,11 @@
+{{- if .Release.IsInstall }}
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: {{ .Values.storageClassName | default (printf "%s-ssd" .Chart.Name)}}
+provisioner: kubernetes.io/gce-pd
+reclaimPolicy: Retain
+parameters:
+  type: {{ .Values.storageClass | default "pd-ssd" }}
+{{- end }}

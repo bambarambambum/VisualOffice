@@ -1,0 +1,4 @@
+project_id = "MY_PROJECT"
+region     = "europe-west1"
+zone       = "europe-west1-c"
+machine_type = "f1-micro"

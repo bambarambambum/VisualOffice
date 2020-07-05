@@ -1,0 +1,7 @@
+name: usersapi
+version: 1.0.0
+description: VisualOffice Users.API service
+maintainers:
+  - name: Mikhail Androsov
+    email: mikh.androsov@gmail.com
+appVersion: 1.0

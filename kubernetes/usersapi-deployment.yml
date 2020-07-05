@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usersapi
+  labels:
+    app: visualoffice
+    component: usersapi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: visualoffice
+      component: usersapi
+  template:
+    metadata:
+      name: usersapi-pod
+      labels:
+        app: visualoffice
+        component: usersapi
+    spec:
+      containers:
+      - image: androsovm/usersapi:test
+        name: usersapi
+        env:
+        - name: MYSQL_SERVER_NAME
+          value: mysql
+        - name: MYSQL_USER
+          value: visualoffice
+        - name: MYSQL_USER_PASSWORD
+          value: VeryStrongPassword
+        - name: MYSQL_DATABASE
+          value: visualoffice

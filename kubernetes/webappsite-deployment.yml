@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webappsite
+  labels:
+    app: visualoffice
+    component: webappsite
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: visualoffice
+      component: webappsite
+  template:
+    metadata:
+      name: webappsite-pod
+      labels:
+        app: visualoffice
+        component: webappsite
+    spec:
+      containers:
+      - image: androsovm/webappsite:test
+        name: webappsite
+        env:
+        - name: HOST_USERS_API
+          value: usersapi

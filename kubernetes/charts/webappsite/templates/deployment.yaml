@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "webappsite.fullname" . }}
+  labels:
+    app: visualoffice
+    component: webappsite
+    release: {{ .Release.Name}}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: visualoffice
+      component: webappsite
+      release: {{ .Release.Name}}
+  template:
+    metadata:
+      name: webappsite-pod
+      labels:
+        app: visualoffice
+        component: webappsite
+        release: {{ .Release.Name}}
+    spec:
+      containers:
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        name: webappsite
+        env:
+        - name: HOST_USERS_API
+          value: {{ .Values.usersapiHost | default (printf "%s-usersapi" .Release.Name)}} #usersapi
