@@ -5,5 +5,8 @@ mysqlPassword: VeryStrongPassword
 
 storageSpec:
   storageClass: # pd-standard or empty (default: pd-ssd)
-  storageClassName: # Name or empty (default: ssd)
   storageValue: 
+
+image:
+  repository: androsovm/mysql
+  tag: latest

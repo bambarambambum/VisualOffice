@@ -23,7 +23,7 @@ spec:
         release: {{ .Release.Name}}
     spec:
       containers:
-      - image: androsovm/mysql:latest
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
@@ -40,4 +40,4 @@ spec:
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
-          claimName: {{ .Chart.Name}}-pvc
+          claimName: {{ template "mysql.fullname" . }}-pvc

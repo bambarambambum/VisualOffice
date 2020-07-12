@@ -3,8 +3,10 @@ resource "google_container_cluster" "primary" {
   name     = "${var.project_id}-gke"
   location = var.zone
 
+  enable_legacy_abac = true
+
   remove_default_node_pool = true
-  initial_node_count       = 3
+  initial_node_count       = var.gke_num_nodes
 
   network    = google_compute_network.vpc.name
   subnetwork = google_compute_subnetwork.subnet.name

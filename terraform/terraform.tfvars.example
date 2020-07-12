@@ -1,4 +1,5 @@
-project_id = "MY_PROJECT"
+project_id = "my-project"
 region     = "europe-west1"
 zone       = "europe-west1-c"
-machine_type = "f1-micro"
+machine_type = "n1-standard-2"
+gke_num_nodes = 4

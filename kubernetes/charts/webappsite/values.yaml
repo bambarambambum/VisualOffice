@@ -4,6 +4,10 @@ service:
   
 image:
   repository: androsovm/webappsite
-  tag: test
+  tag: latest
 
 usersapiHost:
+
+ingress:
+  class: nginx
+  host:

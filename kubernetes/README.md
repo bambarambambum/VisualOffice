@@ -1,4 +1,5 @@
 # Helm Charts
+ФАЙЛ БУДЕТ ДОПОЛНЯТЬСЯ
 С помощью Helm Charts происходит развертывание приложения по шаблонам в кластере Kubernetes.
 Используемая версия Helm - v3
 ## Файловая структура
@@ -38,8 +39,10 @@ visualoffice - Зависимости Chart
 | mysqlPassword: | VeryStrongPassword | Пароль пользователя для базы данных |
 | storageSpec: | | |
 | storageClass | - | Класс хранилища (pd-standard или pd-sdd (если пусто: pd-ssd)) |
-| storageClassName | - | Имя хранилища (если пусто: mysql-ssd) |
 | storageValue | - | Объем хранилища (если пусто: 2Gi) |
+| image: |  |  |
+| repository: | androsovm/mysql | Имя Docker Hub репозитория |
+| tag: | test | Тэг |
 
 ### usersapi - values.yaml
 | Ключ | Значение | Описание |
@@ -64,6 +67,9 @@ visualoffice - Зависимости Chart
 | image: |  |  |
 | repository: | androsovm/webappsite | Имя Docker Hub репозитория |
 | tag: | test | Тэг |
+| ingress: |  |  |
+| class: | nginx | Класс ingress'a |
+| host: | - | Адрес хоста (по-умолчанию: имя сервиса webappsite) |
 
 ### Запускаем
 * Убедитесь, что установлен helm3, kubectl

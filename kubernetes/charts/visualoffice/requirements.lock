@@ -1,0 +1,12 @@
+dependencies:
+- name: webappsite
+  repository: file://../webappsite
+  version: 1.0.0
+- name: usersapi
+  repository: file://../usersapi
+  version: 1.0.0
+- name: mysql
+  repository: file://../mysql
+  version: 1.0.0
+digest: sha256:87c14f675650ab4b341dc8757637f67cab8dec9a21bc5e402c68dea58dec9a49
+generated: "2020-07-04T16:02:38.060315076+03:00"

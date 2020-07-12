@@ -3,12 +3,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Chart.Name}}-pvc #mysql-pvc
+  name: {{ template "mysql.fullname" . }}-pvc
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: {{ .Values.storageValue | default "2Gi"}}
-  storageClassName: {{ .Values.storageClassName | default (printf "%s-ssd" .Chart.Name)}}
+  storageClassName: {{ template "mysql.datastore" . }}
 {{- end }}

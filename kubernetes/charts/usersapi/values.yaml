@@ -9,4 +9,4 @@ service:
 
 image:
   repository: androsovm/usersapi
-  tag: test
+  tag: latest

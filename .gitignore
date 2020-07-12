@@ -5,7 +5,13 @@
 *.tfvars
 
 # Charts
-*.lock
+cadvisor/
+gitlab-omni/
 
 # Application
-VisualOffice/
+VisualOffice-App/
+
+# Docker
+docker-compose.dcproj
+docker-compose.override.yml
+docker-compose.yml
