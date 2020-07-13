@@ -1,5 +1,9 @@
 ### VisualOffice - Практики и инструменты DevOps
 
+## Screencast
+
+https://www.youtube.com/watch?v=WajkV-tcnCE
+
 ## Инструменты и компоненты
 | Инструмент/Компонент | Описание |
 | ------ | ------ |
@@ -50,7 +54,7 @@ $ git clone https://github.com/bambarambambum/VisualOffice
 $ make before_run
 ```
 * Вводим все учетные данные и пароли, которые будут затребованы.
-* После выполнения всех действий, необходимо завершить сессию командой ```exit```
+* После выполнения make before_run, переподключиться или сделать ребут.
 * Так же нужно авторизоваться в Docker Hub ```docker login```
 * Теперь вводим команды:
 ```sh
@@ -113,7 +117,7 @@ $ git init
 $ git remote add origin http://gitlab-gitlab/имя_пользователя_docker_hub/visualoffice.git
 $ git checkout -b feature/test
 $ git add .
-$ git commit -m “Test CI”
+$ git commit -m "Test CI"
 $ git push origin feature/test
 ```
 5) В папке gitlab_ci/visualoffice-deploy сделать
@@ -121,7 +125,7 @@ $ git push origin feature/test
 $ git init
 $ git remote add origin http://gitlab-gitlab/имя_пользователя_docker_hub/visualoffice-deploy.git
 $ git add .
-$ git commit -m “Test CD”
+$ git commit -m "Test CD"
 $ git push origin master
 ```
 5) Теперь можно проверять pipeline'ы
