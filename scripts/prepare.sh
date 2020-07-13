@@ -7,8 +7,10 @@ sleep 2
 echo -e "${GREEN}Обновляем систему...${NORMAL}"
 sudo apt update && sudo apt upgrade -y
 sudo apt install curl -y
+sudo apt install unzip -y
 echo -e "${GREEN}Устанавливаем Docker...${NORMAL}"
 sudo apt install docker.io -y
+sudo gpasswd -a $USER docker
 echo -e "${GREEN}Устанавливаем Google Cloud SDK...${NORMAL}"
 echo -e "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
@@ -34,4 +36,4 @@ git config --global user.name "${GIT_USER}"
 echo -e "${GREEN}Авторизуемся в gcloud...${NORMAL}"
 gcloud init --console-only
 echo -e "${GREEN}Авторизуемся в Docker Hub...${NORMAL}"
-docker login
+sudo docker login

@@ -1,5 +1,10 @@
 # VisualOffice changelog
 
+### 13.07.2020 - v1.0.1
+* Поправлен Makefile
+* Поправлен prepare.sh
+* Дополнен README.md
+
 ### 12.07.2020 - v1.0
 * Добавлен Helm Chart Prometheus
 * Добавлен Helm Chart Prometheus MySQL Exporter

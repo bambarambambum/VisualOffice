@@ -1,6 +1,7 @@
+.PHONY: docker terraform
+
 before_run:
 	cd scripts && \
-    source environment.sh && \
 	./prepare.sh
 
 run: docker terraform helm

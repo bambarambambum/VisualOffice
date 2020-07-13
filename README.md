@@ -47,6 +47,7 @@ $ git clone https://github.com/bambarambambum/VisualOffice
 ## Запуск
 1) Подготавливаем окружение
 ```sh
+$ source ./scripts/environment.sh
 $ make before_run
 ```
 Вводим все учетные данные и пароли, которые будут затребованы.
