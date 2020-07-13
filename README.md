@@ -25,7 +25,7 @@ $ git clone https://github.com/bambarambambum/VisualOffice
 | GIT_USER | Имя пользователя для Git |
 | PROJECT_ID | Google Cloud Project ID |
 | USER_NAME | Имя пользователя Docker Hub |
-### visualoffice/terraform/terraform.tfvars
+### visualoffice/terraform/terraform.tfvars (переименуйте terraform.tfvars.example)
 | Значение | Описание |
 | ------ | ------ |
 | project_id | Google Cloud Project ID |
@@ -47,10 +47,16 @@ $ git clone https://github.com/bambarambambum/VisualOffice
 ## Запуск
 1) Подготавливаем окружение
 ```sh
-$ source ./scripts/environment.sh
 $ make before_run
 ```
-Вводим все учетные данные и пароли, которые будут затребованы.
+* Вводим все учетные данные и пароли, которые будут затребованы.
+* После выполнения всех действий, необходимо завершить сессию командой ```exit```
+* Так же нужно авторизоваться в Docker Hub ```docker login```
+* Теперь вводим команды:
+```sh
+cd VisualOffice
+source ./scripts/environment.sh
+```
 2) Запускаем проект
 ```sh
 $ make run
@@ -84,13 +90,13 @@ $ kubectl exec -it visualoffice-mysql-5777748595-qqvvm -- bash -c "mysql -uvisua
 ```
 ## Проверка
 Переходим по адресам
-http://visualoffice/
-http://prometheus/
-https://gitlab-gitlab/
-http://grafana/
-Логин: admin
-Пароль: admin
-Необходимо добавить дашбоард с ID 12206
+* http://visualoffice/
+* http://prometheus/
+* https://gitlab-gitlab/
+* http://grafana/
+* Логин: admin
+* Пароль: admin
+* Необходимо добавить дашбоард с ID 12206
 
 ## (ВРЕМЕННО) Подготовка Gitlab
 1) Необходимо авторизоваться в https://gitlab-gitlab/

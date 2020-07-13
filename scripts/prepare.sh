@@ -24,6 +24,8 @@ curl -O "https://get.helm.sh/helm-v3.2.4-linux-amd64.tar.gz"
 tar -xzf helm-v3.2.4-linux-amd64.tar.gz -C . linux-amd64/helm
 sudo mv linux-amd64/helm /usr/local/bin/helm
 rm -r linux-amd64
+rm helm-v3.2.4-linux-amd64.tar.gz
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 echo -e "${GREEN}Устанавливаем Terraform...${NORMAL}"
 curl -O https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
 unzip terraform_0.12.28_linux_amd64.zip
@@ -35,12 +37,13 @@ git config --global user.email "${GIT_EMAIL}"
 git config --global user.name "${GIT_USER}"
 echo -e "${GREEN}Авторизуемся в gcloud...${NORMAL}"
 gcloud init --console-only
-echo -e "${GREEN}Авторизуемся в Docker Hub...${NORMAL}"
-sudo docker login
+echo -e "${GREEN}Авторизуем приложения в gcloud...${NORMAL}"
+gcloud auth application-default login
 echo -e "${GREEN}Клонируем проект...${NORMAL}"
 cd ..
 git clone https://github.com/bambarambambum/VisualOffice-App
 cp -R VisualOffice-App gitlab_ci/visualoffice
+echo -e "${GREEN}Подготавливаем файлы для Gitlab CI...${NORMAL}"
 mkdir gitlab_ci/visualoffice-deploy
 cp -R kubernetes/charts/mysql gitlab_ci/visualoffice-deploy/mysql
 cp -R kubernetes/charts/usersapi gitlab_ci/visualoffice-deploy/usersapi
