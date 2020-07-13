@@ -37,3 +37,14 @@ echo -e "${GREEN}Авторизуемся в gcloud...${NORMAL}"
 gcloud init --console-only
 echo -e "${GREEN}Авторизуемся в Docker Hub...${NORMAL}"
 sudo docker login
+echo -e "${GREEN}Клонируем проект...${NORMAL}"
+cd ..
+git clone https://github.com/bambarambambum/VisualOffice-App
+cp -R VisualOffice-App gitlab_ci/visualoffice
+mkdir gitlab_ci/visualoffice-deploy
+cp -R kubernetes/charts/mysql gitlab_ci/visualoffice-deploy/mysql
+cp -R kubernetes/charts/usersapi gitlab_ci/visualoffice-deploy/usersapi
+cp -R kubernetes/charts/webappsite gitlab_ci/visualoffice-deploy/webappsite
+cp -R kubernetes/charts/visualoffice gitlab_ci/visualoffice-deploy/visualoffice
+cp kubernetes/charts/.gitlab-ci.yml gitlab_ci/visualoffice-deploy/.gitlab-ci.yml
+rm -Rf VisualOffice-App

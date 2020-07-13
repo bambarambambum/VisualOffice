@@ -1,5 +1,10 @@
 # VisualOffice changelog
 
+### 13.07.2020 - v1.0.2
+* Поправлен prepare.sh
+* Удалены лишние файлы
+* Дополнен README.md
+
 ### 13.07.2020 - v1.0.1
 * Поправлен Makefile
 * Поправлен prepare.sh
