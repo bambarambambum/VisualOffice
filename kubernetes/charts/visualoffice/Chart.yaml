@@ -1,3 +1,4 @@
+apiVersion: v1
 name: visualoffice
 version: 0.1.0
 description: VisualOffice Application

@@ -1,3 +1,4 @@
+apiVersion: v1
 name: webappsite
 version: 1.0.0
 description: VisualOffice application web

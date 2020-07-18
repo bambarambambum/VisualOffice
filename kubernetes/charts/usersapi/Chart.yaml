@@ -1,3 +1,4 @@
+apiVersion: v1
 name: usersapi
 version: 1.0.0
 description: VisualOffice Users.API service

@@ -1,6 +1,12 @@
 # VisualOffice changelog
 
-### 17.07.2020 - Develop
+### 18.07.2020 - Develop - v1.0.1
+* Обновлен gitlab_ci/README.md
+* Доработаны пайплайны visualoffice и visualoffice-deploy (добавлен триггер для деплоя)
+* Добавлено развертывание Helm Chart'ов с помощью Terraform
+* Добавлены Dashboard'ы для Grafana
+
+### 17.07.2020 - Develop - v1.0.0
 * Обновлена версия Gitlab до 13.1.3 (для его работы требуется домен в управлении Google DNS, инструкции где взять домен и как настроить будут позднее)
 * Переработаны пайплайны visualoffice и visualoffice-deploy (убрано дублирование кода, добавлены условия для этапов)
 

@@ -8,4 +8,6 @@ gcloud dns record-sets transaction add "$(kubectl get service nginx-nginx-ingres
 gcloud dns record-sets transaction add "$(kubectl get service nginx-nginx-ingress-controller --output jsonpath='{.status.loadBalancer.ingress[0].ip}')" --name=usersapi.$DNS_DOMAIN_NAME --ttl=300 --type=A --zone=$DNS_ZONE_NAME
 gcloud dns record-sets transaction add "$(kubectl get service nginx-nginx-ingress-controller --output jsonpath='{.status.loadBalancer.ingress[0].ip}')" --name=staging.$DNS_DOMAIN_NAME --ttl=300 --type=A --zone=$DNS_ZONE_NAME
 gcloud dns record-sets transaction add "$(kubectl get service nginx-nginx-ingress-controller --output jsonpath='{.status.loadBalancer.ingress[0].ip}')" --name=production.$DNS_DOMAIN_NAME --ttl=300 --type=A --zone=$DNS_ZONE_NAME
+gcloud dns record-sets transaction add "$(kubectl get service nginx-nginx-ingress-controller --output jsonpath='{.status.loadBalancer.ingress[0].ip}')" --name=grafana.$DNS_DOMAIN_NAME --ttl=300 --type=A --zone=$DNS_ZONE_NAME
+gcloud dns record-sets transaction add "$(kubectl get service nginx-nginx-ingress-controller --output jsonpath='{.status.loadBalancer.ingress[0].ip}')" --name=prometheus.$DNS_DOMAIN_NAME --ttl=300 --type=A --zone=$DNS_ZONE_NAME
 gcloud dns record-sets transaction execute --zone $DNS_ZONE_NAME

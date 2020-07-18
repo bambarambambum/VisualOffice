@@ -16,6 +16,9 @@ docker-compose.dcproj
 docker-compose.override.yml
 docker-compose.yml
 
-#Gitlab CI
+# Gitlab CI
 gitlab_ci/visualoffice/
 gitlab_ci/visualoffice-deploy/
+
+# Scripts
+scripts/helm.sh

@@ -368,7 +368,7 @@ server:
     ## Must be provided if Ingress is enabled
     ##
     hosts:
-     - prometheus
+     - prometheus.visualoffice.tk
 
     ## Prometheus server Ingress TLS configuration
     ## Secrets must be manually created in the namespace

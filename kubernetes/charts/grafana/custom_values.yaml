@@ -137,7 +137,7 @@ ingress:
   labels: {}
   path: /
   hosts:
-    - grafana
+    - grafana.visualoffice.tk
   ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
   extraPaths: []
   # - path: /*
