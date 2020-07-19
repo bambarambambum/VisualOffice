@@ -368,7 +368,7 @@ server:
     ## Must be provided if Ingress is enabled
     ##
     hosts:
-     - prometheus
+     - prometheus.visualoffice.tk
 
     ## Prometheus server Ingress TLS configuration
     ## Secrets must be manually created in the namespace
@@ -566,33 +566,162 @@ pushgateway:
 ## alertmanager ConfigMap entries
 ##
 alertmanagerFiles:
-  alertmanager.yml: |-
-    global:
-      slack_api_url: "https://hooks.slack.com/services/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"
+  alertmanager.yml:
+    global: {}
+      # slack_api_url: ''
 
     receivers:
-      - name: "slack-notifications"
-        slack_configs:
-         - channel: "#mikhail_androsov"
+      - name: default-receiver
+        # slack_configs:
+        #  - channel: '@you'
+        #    send_resolved: true
 
     route:
-      receiver: "slack-notifications"
+      group_wait: 10s
+      group_interval: 5m
+      receiver: default-receiver
+      repeat_interval: 3h
+
+    #   slack_api_url: "https://hooks.slack.com/services/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"
+
+    # receivers:
+    #   - name: "slack-notifications"
+    #     slack_configs:
+    #      - channel: "#mikhail_androsov"
+
+    # route:
+    #   receiver: "slack-notifications"
+    #   group_wait: 30s
+    #   group_interval: 5m
+    #   repeat_interval: 1h
 
 ## Prometheus server ConfigMap entries
 ##
 serverFiles:
+  alerting_rules.yml: {}
   alerts:
     groups:
-      - name: NodeDown
+      - name: Prometheus
         rules:
-        - alert: NodeDown
-          expr: up == 0
-          for: 1m
-          labels:
-            severity: critical
-          annotations:
-            summary: "Node down"
-            description: "Node has been down for more than 1 minute."
+          - alert: PrometheusJobMissing
+            expr: absent(up{job="my-job"})
+            for: 5m
+            labels:
+              severity: warning
+            annotations:
+              summary: "Prometheus job missing (instance {{ $labels.instance }})"
+              description: "A Prometheus job has disappeared\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+          - alert: PrometheusTooManyRestarts
+            expr: changes(process_start_time_seconds{job=~"prometheus|pushgateway|alertmanager"}[15m]) > 2
+            for: 5m
+            labels:
+              severity: warning
+            annotations:
+              summary: "Prometheus too many restarts (instance {{ $labels.instance }})"
+              description: "Prometheus has restarted more than twice in the last 15 minutes. It might be crashlooping.\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}" 
+      - name: hostname
+        rules:
+          - alert: HostHighCpuLoad
+            expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+            for: 5m
+            labels:
+             severity: warning
+            annotations:
+              summary: "Host high CPU load (instance {{ $labels.instance }})"
+              description: "CPU load is > 80%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+          - alert: HostOutOfMemory
+            expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10
+            for: 5m
+            labels:
+              severity: warning
+            annotations:
+              summary: "Host out of memory (instance {{ $labels.instance }})"
+              description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+          - alert: HostUnusualDiskReadLatency
+            expr: rate(node_disk_read_time_seconds_total[1m]) / rate(node_disk_reads_completed_total[1m]) > 100
+            for: 5m
+            labels:
+              severity: warning
+            annotations:
+              summary: "Host unusual disk read latency (instance {{ $labels.instance }})"
+              description: "Disk latency is growing (read operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+          - alert: HostUnusualDiskWriteLatency
+            expr: rate(node_disk_write_time_seconds_total[1m]) / rate(node_disk_writes_completed_total[1m]) > 100
+            for: 5m
+            labels:
+              severity: warning
+            annotations:
+              summary: "Host unusual disk write latency (instance {{ $labels.instance }})"
+              description: "Disk latency is growing (write operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+          - alert: HostDiskWillFillIn4Hours
+            expr: predict_linear(node_filesystem_free_bytes{fstype!~"tmpfs"}[1h], 4 * 3600) < 0
+            for: 5m
+            labels:
+              severity: warning
+            annotations:
+              summary: "Host disk will fill in 4 hours (instance {{ $labels.instance }})"
+              description: "Disk will fill in 4 hours at current write rate\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+      - name: Kubernetes
+        rules:
+          - alert: KubernetesNodeReady
+            expr: kube_node_status_condition{condition="Ready",status="true"} == 0
+            for: 5m
+            labels:
+              severity: critical
+            annotations:
+              summary: "Kubernetes Node ready (instance {{ $labels.instance }})"
+              description: "Node {{ $labels.node }} has been unready for a long time\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+          - alert: KubernetesJobFailed
+            expr: kube_job_status_failed > 0
+            for: 5m
+            labels:
+              severity: warning
+            annotations:
+              summary: "Kubernetes Job failed (instance {{ $labels.instance }})"
+              description: "Job {{$labels.namespace}}/{{$labels.exported_job}} failed to complete\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+          - alert: KubernetesMemoryPressure
+            expr: kube_node_status_condition{condition="MemoryPressure",status="true"} == 1
+            for: 5m
+            labels:
+              severity: critical
+            annotations:
+              summary: "Kubernetes memory pressure (instance {{ $labels.instance }})"
+              description: "{{ $labels.node }} has MemoryPressure condition\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+          - alert: KubernetesPersistentvolumeError
+            expr: kube_persistentvolume_status_phase{phase=~"Failed|Pending",job="kube-state-metrics"} > 0
+            for: 5m
+            labels:
+              severity: critical
+            annotations:
+              summary: "Kubernetes PersistentVolume error (instance {{ $labels.instance }})"
+              description: "Persistent volume is in bad state\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+          - alert: KubernetesPersistentvolumeclaimPending
+            expr: kube_persistentvolumeclaim_status_phase{phase="Pending"} == 1
+            for: 5m
+            labels:
+              severity: warning
+            annotations:
+              summary: "Kubernetes PersistentVolumeClaim pending (instance {{ $labels.instance }})"
+              description: "PersistentVolumeClaim {{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }} is pending\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+      - name: Nginx
+        rules:
+          - alert: NginxHighHttp4xxErrorRate
+            expr: sum(rate(nginx_http_requests_total{status=~"^4.."}[1m])) / sum(rate(nginx_http_requests_total[1m])) * 100 > 5
+            for: 5m
+            labels:
+              severity: critical
+            annotations:
+              summary: "Nginx high HTTP 4xx error rate (instance {{ $labels.instance }})"
+              description: "Too many HTTP requests with status 4xx (> 5%)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+          - alert: NginxHighHttp5xxErrorRate
+            expr: sum(rate(nginx_http_requests_total{status=~"^5.."}[1m])) / sum(rate(nginx_http_requests_total[1m])) * 100 > 5
+            for: 5m
+            labels:
+              severity: critical
+            annotations:
+              summary: "Nginx high HTTP 5xx error rate (instance {{ $labels.instance }})"
+              description: "Too many HTTP requests with status 5xx (> 5%)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+
   rules: {}
 
   prometheus.yml:
@@ -938,7 +1067,6 @@ serverFiles:
             target_label: kubernetes_namespace
           - source_labels: [__meta_kubernetes_service_name]
             target_label: kubernetes_name
-
 
 networkPolicy:
   ## Enable creation of NetworkPolicy resources.

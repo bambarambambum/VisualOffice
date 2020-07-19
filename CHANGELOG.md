@@ -1,5 +1,11 @@
 # VisualOffice changelog
 
+### 19.07.2020 - Develop - v1.0.2
+* Обновлен charts_templates/prometheus/README.md
+* Добавлено несколько алертов в Prometheus
+* Обновлен charts_templates/grafana/README.md
+* Автоматическое добавление дашбоардов при запуске Grafana
+
 ### 18.07.2020 - Develop - v1.0.1
 * Обновлен gitlab_ci/README.md
 * Доработаны пайплайны visualoffice и visualoffice-deploy (добавлен триггер для деплоя)

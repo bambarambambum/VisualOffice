@@ -17,19 +17,29 @@
 | Server: | | |
 | ingress: | | |
 | enabled: | true | Включить ingress для Prometheus |
-| hosts: | prometheus | Имя хоста |
+| hosts: | prometheus.visualoffice.tk | Имя хоста |
 ## Алерты
-Настроен простой алертинг
-```
-- alert: NodeDown
-  expr: up == 0
-  for: 1m
-  labels:
-    severity: critical
-  annotations:
-    summary: "Node down"
-    description: "Node has been down for more than 1 minute."
-```
+Добавлены следующие алерты:
+* Группа Prometheus
+* - PrometheusJobMissing - Если какой-либо компонент Prometheus недоступен.
+* - PrometheusTooManyRestarts - Если какой-либо компонент Prometheus часто перезапускается.
+* Группа hostname
+* - HostHighCpuLoad - Если загрузка процессора ноды больше 80%
+* - HostOutOfMemory - Если памяти на ноде осталось меньше 10%
+* - HostUnusualDiskReadLatency - Если задержка на чтения с диска больше 100 мс.
+* - HostUnusualDiskWriteLatency - Если задержка на запись на диск больше 100 мс.
+* - HostOutOfDiskSpace - Если на диске осталось меньше 10% свободного места.
+* - HostDiskWillFillIn4Hours - Когда диск будет заполнен менее, чем через 4 часа при текущей скорости записи на диск.
+* Группа kubernetes
+* - KubernetesNodeReady - Если нода не готова к работе длительное время.
+* - KubernetesJobFailed - Если какая-либо задача провалилась.
+* - KubernetesMemoryPressure - Memory Pressure возникает, если кому-то нужна память.
+* - KubernetesPersistentvolumeError - Если есть какие-либо проблемы с PV.
+* - KubernetesPersistentvolumeclaimPending - Если какое-либо PVC висит в статусе Pending.
+* Группа nginx
+* - NginxHighHttp4xxErrorRate - Если более 5% запросов возвращают статус 4xx
+* - NginxHighHttp5xxErrorRate - Если более 5% запросов возвращают статус 5хх
+Правила взяты отсюда: https://awesome-prometheus-alerts.grep.to/
 ## Конфигурация Targets Prometheus
 Добавлены следующие Targets'ы
 * job_name: 'webappsite-endpoints' - Группа метрик сервиса webappsite.
@@ -45,11 +55,11 @@
 Можно вспользоваться командной ```make helm``` из корня репозитория, это запустит все существующие Chart'ы, включая Promtheus, или:
 Из папки с Chart'ами (kubernetes/charts):
 ```sh
-$ helm install prometheus -f prometheus/custom_values.yaml prometheus
+$ helm install prometheus -f prometheus/custom_values.yaml prometheus -n monitoring
 ```
 Обновить Chart Prometheus:
 ```sh
-$ helm upgrade prometheus -f prometheus/custom_values.yaml prometheus
+$ helm upgrade prometheus -f prometheus/custom_values.yaml prometheus -n monitoring
 ```
 Удалить Chart Prometheus:
 ```sh

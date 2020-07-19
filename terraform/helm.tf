@@ -76,7 +76,7 @@ resource "helm_release" "prometheus-mysql-exporter-staging" {
 }
 
 resource "helm_release" "prometheus-mysql-exporter-production" {
-  name       = "production"
+  name       = "mysql-exporter"
   chart      = "../kubernetes/charts/prometheus-mysql-exporter"
   namespace = "production"
   create_namespace = true
@@ -85,5 +85,18 @@ resource "helm_release" "prometheus-mysql-exporter-production" {
   ]
   values = [
     "${file("../kubernetes/charts/prometheus-mysql-exporter/custom_values.yaml")}"
+  ]
+}
+
+resource "helm_release" "gitlab" {
+  name       = "gitlab"
+  chart      = "../kubernetes/charts/gitlab"
+  namespace = "default"
+
+  depends_on = [
+   google_container_node_pool.primary_nodes
+  ]
+  values = [
+    "${file("../kubernetes/charts/gitlab/custom_values.yaml")}"
   ]
 }
