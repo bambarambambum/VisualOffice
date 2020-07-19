@@ -3,10 +3,9 @@
 *.tfstate
 *.tfstate.backup
 *.tfvars
+*.terraform.tfstate.lock.info
 
 # Charts
-cadvisor/
-gitlab-omni/
 
 # Application
 VisualOffice-App/
