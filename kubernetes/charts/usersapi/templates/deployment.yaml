@@ -29,8 +29,17 @@ spec:
         - name: MYSQL_SERVER_NAME
           value: {{ .Values.databaseHost | default (printf "%s-mysql" .Release.Name)}} #mysql
         - name: MYSQL_USER
-          value: {{ .Values.databaseUser}} #visualoffice
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: MYSQL_USER
         - name: MYSQL_USER_PASSWORD
-          value: {{ .Values.databaseUserPassword}} #VeryStrongPassword
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: MYSQL_USER_PASSWORD        
         - name: MYSQL_DATABASE
-          value: {{ .Values.databaseName}} #visualoffice
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: MYSQL_DATABASE 

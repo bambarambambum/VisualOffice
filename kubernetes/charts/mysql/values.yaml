@@ -1,8 +1,3 @@
-mysqlRootPassword: VeryStrongPassword
-mysqlDatabase: visualoffice
-mysqlUser: visualoffice
-mysqlPassword: VeryStrongPassword
-
 storageSpec:
   storageClass: # pd-standard or empty (default: pd-ssd)
   storageValue: 

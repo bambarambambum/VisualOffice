@@ -1,7 +1,4 @@
 databaseHost:
-databaseUser: visualoffice
-databaseUserPassword: VeryStrongPassword
-databaseName: visualoffice
 
 service:
   internalPort: 80

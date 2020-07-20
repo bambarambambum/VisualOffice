@@ -6,6 +6,7 @@
 *.terraform.tfstate.lock.info
 
 # Charts
+secret.yaml
 
 # Application
 VisualOffice-App/

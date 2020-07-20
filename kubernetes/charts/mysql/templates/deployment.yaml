@@ -23,17 +23,29 @@ spec:
         release: {{ .Release.Name}}
     spec:
       containers:
-      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+      - image: {{ template "image.fullname" . }}
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: {{ .Values.mysqlRootPassword}} #VeryStrongPassword
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: MYSQL_ROOT_PASSWORD
         - name: MYSQL_DATABASE
-          value: {{ .Values.mysqlDatabase}} #visualoffice
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: MYSQL_DATABASE
         - name: MYSQL_USER
-          value: {{ .Values.mysqlUser}} #visualoffice
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: MYSQL_USER
         - name: MYSQL_PASSWORD
-          value: {{ .Values.mysqlPassword}} #VeryStrongPassword
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: MYSQL_PASSWORD
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql

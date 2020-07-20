@@ -1,5 +1,10 @@
 # VisualOffice changelog
 
+### 20.07.2020 - Develop - v1.0.3
+* Обновлен charts/README.md
+* Добавлены secret'ы в Chart'ы usersapi и mysql
+* Убраны лишние значения из values.yaml Chart'ов usersapi и mysql
+
 ### 19.07.2020 - Develop - v1.0.2
 * Обновлен charts_templates/prometheus/README.md
 * Добавлено несколько алертов в Prometheus

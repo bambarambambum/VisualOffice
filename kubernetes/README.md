@@ -29,14 +29,24 @@ webappsite - Веб-интерфейс и карта приложения.
 usersapi - Сервис для взаимодействия (получение, сохрание пользователей) с базой данных.
 visualoffice - Зависимости Chart
 
+## Cекреты
+### usersapi- secret.yaml.example
+| Ключ | Значение | Описание |
+| ------ | ------ | ----- |
+| MYSQL_DATABASE | visualoffice | Создаваемая база данных для приложения |
+| MYSQL_ROOT_PASSWORD | VeryStrongPassword | Пароль root-пользователя MySQL |
+| MYSQL_USER | visualoffice | Создаваемый пользователь для базы данных |
+| MYSQL_PASSWORD | VeryStrongPassword | Создаваемый пароль пользователя для базы данных |
+### usersapi - secret.yaml.example
+| Ключ | Значение | Описание |
+| ------ | ------ | ----- |
+| MYSQL_DATABASE | visualoffice | Имя базы данных для приложения |
+| MYSQL_USER | visualoffice | Пользователь для подключения к базе данных |
+| MYSQL_USER_PASSWORD | VeryStrongPassword | Пароль пользователя для подключения к базе данных |
 ## Переменные
 ### mysql - values.yaml
 | Ключ | Значение | Описание |
 | ------ | ------ | ----- |
-| mysqlRootPassword: | VeryStrongPassword | Пароль root-пользователя MySQL |
-| mysqlDatabase: | visualoffice | База данных, создаваемая для приложения |
-| mysqlUser: | visualoffice | Пользователь для базы данных |
-| mysqlPassword: | VeryStrongPassword | Пароль пользователя для базы данных |
 | storageSpec: | | |
 | storageClass | - | Класс хранилища (pd-standard или pd-sdd (если пусто: pd-ssd)) |
 | storageValue | - | Объем хранилища (если пусто: 2Gi) |
@@ -47,10 +57,7 @@ visualoffice - Зависимости Chart
 ### usersapi - values.yaml
 | Ключ | Значение | Описание |
 | ------ | ------ | ----- |
-| databaseHost: | - | Имя хоста базы данных MySQL (По-умолчанию: Берется имя сервиса MySQL) |
-| databaseUser: | visualoffice | Пользователь для подключения к базе данных (databaseUser = mysqlUser) |
-| databaseUserPassword: | VeryStrongPassword | Пароль пользователя базы данных (mysqlUser = mysqlPassword) |
-| mysqlPassword: | VeryStrongPassword | Пароль пользователя для базы данных |
+| databaseHost: | - | Имя хоста базы данных MySQL (По-умолчанию: Используется имя сервиса MySQL) |
 | service: |  |  |
 | internalPort: | 80 | Внутренний порт сервиса |
 | externalPort: | 80 | Внешний порт сервиса |
@@ -60,7 +67,7 @@ visualoffice - Зависимости Chart
 ### webappsite - values.yaml
 | Ключ | Значение | Описание |
 | ------ | ------ | ----- |
-| usersapiHost: | - | Имя хоста сервиса  (По-умолчанию: Берется имя сервиса usersapi) |
+| usersapiHost: | - | Имя хоста сервиса  (По-умолчанию: Используется имя сервиса usersapi) |
 | service: |  |  |
 | internalPort: | 80 | Внутренний порт сервиса |
 | externalPort: | 80 | Внешний порт сервиса |

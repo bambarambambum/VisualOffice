@@ -10,4 +10,4 @@ usersapiHost:
 
 ingress:
   class: nginx
-  host:
+  host: visualoffice.visualoffice.tk

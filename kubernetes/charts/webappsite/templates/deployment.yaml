@@ -27,4 +27,4 @@ spec:
         name: webappsite
         env:
         - name: HOST_USERS_API
-          value: {{ .Values.usersapiHost | default (printf "%s-usersapi" .Release.Name)}} #usersapi
+          value: {{ .Values.usersapiHost | default (printf "%s-usersapi" .Release.Name)}}
