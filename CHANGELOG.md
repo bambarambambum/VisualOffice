@@ -1,5 +1,8 @@
 # VisualOffice changelog
 
+### 21.07.2020 - Develop - v1.0.4
+* Добавлен выпуск fake-сертификатов для visualoffice, grafana, prometheus
+
 ### 20.07.2020 - Develop - v1.0.3
 * Обновлен charts/README.md
 * Добавлены secret'ы в Chart'ы usersapi и mysql

@@ -5,7 +5,12 @@ metadata:
   name: {{ template "webappsite.fullname" . }}
   annotations:
     kubernetes.io/ingress.class: {{ .Values.ingress.class }}
+    cert-manager.io/cluster-issuer: letsencrypt-staging
 spec:
+  tls:
+    - hosts:
+      - {{ .Values.ingress.host }}
+      secretName: letsencrypt-staging
   rules:
   - host: {{ .Values.ingress.host | default .Release.Name }}
     http:

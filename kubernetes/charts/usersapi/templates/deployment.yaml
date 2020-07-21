@@ -31,15 +31,15 @@ spec:
         - name: MYSQL_USER
           valueFrom:
             secretKeyRef:
-              name: secrets
+              name: {{ template "usersapi.fullname" . }}-secret
               key: MYSQL_USER
         - name: MYSQL_USER_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: secrets
+              name: {{ template "usersapi.fullname" . }}-secret
               key: MYSQL_USER_PASSWORD        
         - name: MYSQL_DATABASE
           valueFrom:
             secretKeyRef:
-              name: secrets
+              name: {{ template "usersapi.fullname" . }}-secret
               key: MYSQL_DATABASE 

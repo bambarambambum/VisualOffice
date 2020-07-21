@@ -360,7 +360,10 @@ server:
 
     ## Prometheus server Ingress annotations
     ##
-    annotations: {}
+    #annotations: {}
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      cert-manager.io/cluster-issuer: letsencrypt-staging
     #   kubernetes.io/ingress.class: nginx
     #   kubernetes.io/tls-acme: 'true'
 
@@ -373,7 +376,11 @@ server:
     ## Prometheus server Ingress TLS configuration
     ## Secrets must be manually created in the namespace
     ##
-    tls: []
+    #tls: []
+    tls: #[]
+    - secretName: letsencrypt-staging
+      hosts:
+        - prometheus.visualoffice.tk
     #   - secretName: prometheus-server-tls
     #     hosts:
     #       - prometheus.domain.com
