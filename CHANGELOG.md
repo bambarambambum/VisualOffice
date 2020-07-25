@@ -1,5 +1,9 @@
 # VisualOffice changelog
 
+### 25.07.2020 - Develop -v1.0.5
+* Добавлены clusterrole и clusterrolebinging для Chart'ов usersapi и mysql
+* Приложение VisualOffce и gitlab вынесены в отдельный namespace - application
+
 ### 21.07.2020 - Develop - v1.0.4
 * Добавлен выпуск fake-сертификатов для visualoffice, grafana, prometheus
 

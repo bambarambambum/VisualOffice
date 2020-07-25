@@ -994,7 +994,7 @@ serverFiles:
             regex: mysql-exporter
           - source_labels: [__meta_kubernetes_namespace]
             action: keep
-            regex: (default|production|staging)+
+            regex: (application|production|staging)+
           - action: labelmap
             regex: __meta_kubernetes_service_label_(.+)
           - source_labels: [__meta_kubernetes_namespace]
@@ -1002,7 +1002,7 @@ serverFiles:
           - source_labels: [__meta_kubernetes_service_name]
             target_label: kubernetes_name
       
-      - job_name: 'visualoffice-default'
+      - job_name: 'visualoffice-application'
 
         kubernetes_sd_configs:
           - role: endpoints
@@ -1018,7 +1018,7 @@ serverFiles:
             regex: mysql
           - source_labels: [__meta_kubernetes_namespace]
             action: keep
-            regex: default
+            regex: application
           - source_labels: [__meta_kubernetes_namespace]
             target_label: kubernetes_namespace
           - source_labels: [__meta_kubernetes_service_name]

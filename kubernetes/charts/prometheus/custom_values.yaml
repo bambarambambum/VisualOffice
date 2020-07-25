@@ -360,10 +360,7 @@ server:
 
     ## Prometheus server Ingress annotations
     ##
-    #annotations: {}
-    annotations:
-      kubernetes.io/ingress.class: nginx
-      cert-manager.io/cluster-issuer: letsencrypt-staging
+    annotations: {}
     #   kubernetes.io/ingress.class: nginx
     #   kubernetes.io/tls-acme: 'true'
 
@@ -376,11 +373,7 @@ server:
     ## Prometheus server Ingress TLS configuration
     ## Secrets must be manually created in the namespace
     ##
-    #tls: []
-    tls: #[]
-    - secretName: letsencrypt-staging
-      hosts:
-        - prometheus.visualoffice.tk
+    tls: []
     #   - secretName: prometheus-server-tls
     #     hosts:
     #       - prometheus.domain.com
@@ -660,14 +653,6 @@ serverFiles:
             annotations:
               summary: "Host unusual disk write latency (instance {{ $labels.instance }})"
               description: "Disk latency is growing (write operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-          - alert: HostOutOfDiskSpace
-            expr: (node_filesystem_avail_bytes{mountpoint="/rootfs"}  * 100) / node_filesystem_size_bytes{mountpoint="/rootfs"} < 10
-            for: 5m
-            labels:
-              severity: warning
-            annotations:
-              summary: "Host out of disk space (instance {{ $labels.instance }})"
-              description: "Disk is almost full (< 10% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
           - alert: HostDiskWillFillIn4Hours
             expr: predict_linear(node_filesystem_free_bytes{fstype!~"tmpfs"}[1h], 4 * 3600) < 0
             for: 5m
@@ -1009,7 +994,7 @@ serverFiles:
             regex: mysql-exporter
           - source_labels: [__meta_kubernetes_namespace]
             action: keep
-            regex: (default|production|staging)+
+            regex: (application|production|staging)+
           - action: labelmap
             regex: __meta_kubernetes_service_label_(.+)
           - source_labels: [__meta_kubernetes_namespace]
@@ -1017,7 +1002,7 @@ serverFiles:
           - source_labels: [__meta_kubernetes_service_name]
             target_label: kubernetes_name
       
-      - job_name: 'visualoffice-default'
+      - job_name: 'visualoffice-application'
 
         kubernetes_sd_configs:
           - role: endpoints
@@ -1033,7 +1018,7 @@ serverFiles:
             regex: mysql
           - source_labels: [__meta_kubernetes_namespace]
             action: keep
-            regex: default
+            regex: application
           - source_labels: [__meta_kubernetes_namespace]
             target_label: kubernetes_namespace
           - source_labels: [__meta_kubernetes_service_name]

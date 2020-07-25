@@ -15,26 +15,27 @@ resource "helm_release" "nginx-ingress" {
 resource "helm_release" "visualoffice" {
   name       = "visualoffice"
   chart      = "../kubernetes/charts/visualoffice"
-  namespace = "default"
-
-  depends_on = [
-   google_container_node_pool.primary_nodes
-  ]
-}
-
-resource "helm_release" "prometheus" {
-  name       = "prometheus"
-  chart      = "../kubernetes/charts/prometheus"
-  namespace = "monitoring"
+  namespace = "application"
   create_namespace = true
 
   depends_on = [
    google_container_node_pool.primary_nodes
   ]
-  values = [
-    "${file("../kubernetes/charts/prometheus/custom_values.yaml")}"
-  ]
 }
+
+#resource "helm_release" "prometheus" {
+#  name       = "prometheus"
+#  chart      = "../kubernetes/charts/prometheus"
+#  namespace = "monitoring"
+#  create_namespace = true
+
+#  depends_on = [
+#   google_container_node_pool.primary_nodes
+#  ]
+#  values = [
+#    "${file("../kubernetes/charts/prometheus/custom_values.yaml")}"
+#  ]
+#}
 
 resource "helm_release" "grafana" {
   name       = "grafana"
@@ -52,8 +53,9 @@ resource "helm_release" "grafana" {
 resource "helm_release" "prometheus-mysql-exporter" {
   name       = "mysql-exporter"
   chart      = "../kubernetes/charts/prometheus-mysql-exporter"
-  namespace = "default"
+  namespace = "application"
   create_namespace = true
+
   depends_on = [
    google_container_node_pool.primary_nodes
   ]
@@ -91,7 +93,7 @@ resource "helm_release" "prometheus-mysql-exporter-production" {
 resource "helm_release" "gitlab" {
   name       = "gitlab"
   chart      = "../kubernetes/charts/gitlab"
-  namespace = "default"
+  namespace = "application"
 
   depends_on = [
    google_container_node_pool.primary_nodes
