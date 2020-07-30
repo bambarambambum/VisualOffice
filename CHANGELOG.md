@@ -1,5 +1,8 @@
 # VisualOffice changelog
 
+### 30.07.2020 - Develop - v1.1.1
+* Поправлен README.md
+
 ### 30.07.2020 - Develop - v1.1.0
 * Доработан Terraform (Создание кластера и делой Helm Chart'ов теперь в разных каталогах).
 * Шаблонизированы (charts_templates) все необходимые для запуска проекта файлы Helm Chart'ов.  
