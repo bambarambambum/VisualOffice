@@ -69,9 +69,7 @@ alertmanagerFiles:
 ```
 
 ### Запускаем
-* Убедитесь, что установлен helm3, kubectl
-
-Можно вспользоваться командной ```make helm``` из корня репозитория, это запустит все существующие Chart'ы, включая Promtheus, или:
+Prometheus запускается вместе с остальными Helm Chart'ами. Однако, если нужно запустить Prometheus отдельно:
 Из папки с Chart'ами (kubernetes/charts):
 ```sh
 $ helm install prometheus -f prometheus/custom_values.yaml prometheus -n monitoring

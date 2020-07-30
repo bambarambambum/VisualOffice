@@ -20,10 +20,10 @@
 - - - prometheus-mysql-exporter
 
 ## Описание Chart'ов основного приложения
-mysql - База данных MySQL
-webappsite - Веб-интерфейс и карта приложения.
-usersapi - Сервис для взаимодействия (получение, сохрание пользователей) с базой данных.
-visualoffice - Зависимости Chart
+mysql - База данных MySQL.  
+webappsite - Веб-интерфейс и карта приложения.  
+usersapi - Сервис для взаимодействия (получение, сохрание пользователей) с базой данных.  
+visualoffice - Зависимости Chart.  
 
 ## Cекреты
 ### usersapi- secret.yaml.example

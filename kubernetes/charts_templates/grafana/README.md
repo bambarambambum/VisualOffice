@@ -2,7 +2,7 @@
 Grafana используется для визуализации метрик с мониторинга Prometheus.  
 При запуске Grafana сразу же импортируются дашбоарды и datasource Prometheus
 Учетные данные при первичном входе:  
-Логин: admin
+Логин: admin  
 Пароль: admin  
 ## Описание настроек Helm Chart'a Grafana - custom_values.yaml
 | Имя | Описание | Значение |
