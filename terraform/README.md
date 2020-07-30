@@ -1,12 +1,15 @@
 # Terraform
-С помощью Terraform разворачивается кластер Kubernetes.
+С помощью Terraform разворачивается кластер Kubernetes, а так же развертываются Helm Chart'ы
 ## Файловая структура и описание
 - terraform
-- - gke.tf - описание кластера и нод
-- - vpc.tf - описание VPC
-- - terraform.tfvars - объявление переменных
-- - variables.tf - описание переменных
-- - outputs.tf - значения для вывода в консоль.
+- - kubernetes
+- - - gke.tf - Описание кластера и нод.
+- - - vpc.tf - Описание VPC.
+- - - terraform.tfvars - Объявление переменных.
+- - - variables.tf - Описание переменных.
+- - - outputs.tf - Значения для вывода.
+- - helm
+- - - helm.tf - Описание Helm Chart'ов для запуска.
 
 ## Переменные
 ### terraform.tfvars
@@ -19,7 +22,7 @@
 | gke_num_nodes | Кол-во машин (нод) |
 
 ### Запускаем
-Убедитесь что указали название своего проекта в terraform.tfvars
+Убедитесь, что указали название своего проекта в terraform.tfvars
 1) Используйте gcloud auth для аутентификации.
 ```sh
 $ gcloud auth application-default login
@@ -31,6 +34,11 @@ $ terraform init
 ```
 3) Примените конфигурацию.
 ```sh
+$ terraform apply
+```
+Для запуска Helm Chart'ов, перейдите в папку helm  
+```sh
+$ terraform init
 $ terraform apply
 ```
 Для удаления развертнутой инфраструктуры, воспользуйтесь командой:

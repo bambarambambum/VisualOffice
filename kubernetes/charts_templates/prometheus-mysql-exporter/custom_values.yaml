@@ -100,10 +100,10 @@ mysql:
   db: ""
   host: "visualoffice-mysql"
   param: ""
-  pass: "VeryStrongPassword"
+  pass: "replace_password"
   port: 3306
   protocol: ""
-  user: "visualoffice"
+  user: "replace_user"
   existingSecret: false
 
 # cloudsqlproxy https://cloud.google.com/sql/docs/mysql/sql-proxy

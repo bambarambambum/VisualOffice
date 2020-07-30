@@ -1,0 +1,9 @@
+databaseHost:
+
+service:
+  internalPort: 80
+  externalPort: 80
+
+image:
+  repository: replace_dockerhub_username/usersapi
+  tag: latest

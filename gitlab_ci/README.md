@@ -64,4 +64,4 @@ C помощью Gitlab реализован конвеер CI/CD.
 * - visualoffice
 * - visualoffice-deploy
 * Создать триггер в проекте visualoffice-deploy
-* Проверить путь вызова триггера и вписать ID триггера в visualoffice-deploy/.gitlab-ci.yml
+* Проверить путь вызова триггера и вписать ID триггера в visualofficey/.gitlab-ci.yml

@@ -1,0 +1,13 @@
+service:
+  internalPort: 80
+  externalPort: 80
+  
+image:
+  repository: replace_dockerhub_username/webappsite
+  tag: latest
+
+usersapiHost:
+
+ingress:
+  class: nginx
+  host: replace_hosts

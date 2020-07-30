@@ -9,6 +9,9 @@ Grafana используется для визуализации метрик с
 | ------ | ------ | ----- |
 | ingress: | - | - |
 | enabled: | true | Активировать ingress |
+| annotations: | | |
+| kubernetes.io/ingress.class: | nginx | Тип ingress |
+| cert-manager.io/cluster-issuer: | letsencrypt-staging | Выпуск fake-сертификатов (или letsencrypt-production для выпуска настоящих сертификатов) |
 | hosts: | grafana.visualoffice.tk | Имя хоста |
 ||||
 | adminUser: | admin | Имя пользователя Grafana |

@@ -1,0 +1,7 @@
+storageSpec:
+  storageClass: # pd-standard or empty (default: pd-ssd)
+  storageValue: 
+
+image:
+  repository: replace_dockerhub_username/mysql
+  tag: latest

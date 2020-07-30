@@ -687,6 +687,7 @@ gitlab-runner:
 ## See requirements.yaml for current version
 ## Controlled by `global.grafana.enabled`
 grafana:
+  enabled: false
   ## Override and provide "bogus" administation secrets
   ## gitlab/gitlab-grafana provides overrides via shared-secrets
   admin:

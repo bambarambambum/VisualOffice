@@ -1,29 +1,25 @@
 # Helm Charts
-ФАЙЛ БУДЕТ ДОПОЛНЯТЬСЯ
-С помощью Helm Charts происходит развертывание приложения по шаблонам в кластере Kubernetes.
+С помощью Helm Charts происходит развертывание приложения и сопутствующих сервисов по шаблонам в кластере Kubernetes.
 Используемая версия Helm - v3
-## Файловая структура
+## Файловая структура (Основное приложение)
 - kubernetes
 - - charts
 - - - mysql
-- - - - templates
-- - - - Chart.yaml
-- - - - values.yaml
 - - - usersapi
-- - - -  templates
-- - - - Chart.yaml
-- - - - values.yaml
 - - - webappsite
-- - - - templates
-- - - - Chart.yaml
-- - - - values.yaml
 - - - visualoffice
-- - - - charts
-- - - - requirements.yaml
-- - - - Chart.yaml
-- - - - values.yaml
+- - - ...
+- cluster-Issuer-staging.yml
+## Файловая структура (Остальные сервисы)
+- kubernetes
+- - charts
+- - - ...
+- - - gitlab
+- - - grafana
+- - - prometheus
+- - - prometheus-mysql-exporter
 
-## Описание Chart'ов
+## Описание Chart'ов основного приложения
 mysql - База данных MySQL
 webappsite - Веб-интерфейс и карта приложения.
 usersapi - Сервис для взаимодействия (получение, сохрание пользователей) с базой данных.
@@ -51,7 +47,7 @@ visualoffice - Зависимости Chart
 | storageClass | - | Класс хранилища (pd-standard или pd-sdd (если пусто: pd-ssd)) |
 | storageValue | - | Объем хранилища (если пусто: 2Gi) |
 | image: |  |  |
-| repository: | androsovm/mysql | Имя Docker Hub репозитория |
+| repository: | username/mysql | Имя Docker Hub репозитория |
 | tag: | test | Тэг |
 
 ### usersapi - values.yaml
@@ -62,7 +58,7 @@ visualoffice - Зависимости Chart
 | internalPort: | 80 | Внутренний порт сервиса |
 | externalPort: | 80 | Внешний порт сервиса |
 | image: |  |  |
-| repository: | androsovm/usersapi | Имя Docker Hub репозитория |
+| repository: | username/usersapi | Имя Docker Hub репозитория |
 | tag: | test | Тэг |
 ### webappsite - values.yaml
 | Ключ | Значение | Описание |
@@ -72,32 +68,29 @@ visualoffice - Зависимости Chart
 | internalPort: | 80 | Внутренний порт сервиса |
 | externalPort: | 80 | Внешний порт сервиса |
 | image: |  |  |
-| repository: | androsovm/webappsite | Имя Docker Hub репозитория |
+| repository: | username/webappsite | Имя Docker Hub репозитория |
 | tag: | test | Тэг |
 | ingress: |  |  |
 | class: | nginx | Класс ingress'a |
-| host: | - | Адрес хоста (по-умолчанию: имя сервиса webappsite) |
+| host: | visualoffice.visualoffice.tk | Адрес хоста (по-умолчанию: имя сервиса webappsite) |
+
+### Файлы kubernetes
+* cluster-Issuer-staging.yml - Создание объекта кластера ClusterIssuer, для выпуска fake-сертификатов.
 
 ### Запускаем
-* Убедитесь, что установлен helm3, kubectl
-
-Загрузим все зависимости (из директории kubernetes/charts)
+Загрузим все зависимости (из директории kubernetes/charts)  
 ```sh
 $ helm dep update visualoffice/
 ```
-Установим Chart'ы
+Установим Chart'ы  
 ```sh
-$ helm install visualoffice visualoffice
+$ helm install visualoffice visualoffice/ -n application
 ```
-Если нужно указать namespace, пишем:
+Для обновления конфигурации Chart'a:  
 ```sh
-$ helm install visualoffice visualoffice -n test --create-namespace
+$ helm upgrade visualoffice visualoffice  
 ```
-Для обновления конфигурации Chart'a:
-```sh
-$ helm upgrade visualoffice visualoffice
-```
-Для просмотра статуса Chart'a:
+Для просмотра статуса Chart'a:  
 ```sh
 $ helm status visualoffice
 ```

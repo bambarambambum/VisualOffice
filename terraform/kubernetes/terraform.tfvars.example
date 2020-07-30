@@ -1,4 +1,4 @@
-project_id = "my-project"
+project_id = "replace_my_project"
 region     = "europe-west1"
 zone       = "europe-west1-c"
 machine_type = "n1-standard-2"

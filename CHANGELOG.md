@@ -1,7 +1,17 @@
 # VisualOffice changelog
 
-### 25.07.2020 - Develop -v1.0.5
-* Добавлены clusterrole и clusterrolebinging для Chart'ов usersapi и mysql
+### 30.07.2020 - Develop - v1.1.0
+* Доработан Terraform (Создание кластера и делой Helm Chart'ов теперь в разных каталогах).
+* Шаблонизированы (charts_templates) все необходимые для запуска проекта файлы Helm Chart'ов.  
+* Переделаны, доработаны и созданы новые скрипты. Для запуска проекта необходимо меньше ручных действий.
+* Добавлен мини-гайд README_DOMAIN.md для получения своего домена.
+* Актуализированы все README.md всех компонентов и сервисов.
+* Добавлен README.md для scripts.
+* Доработан Makefile
+* Внесены новые записи в .gitignore
+
+### 25.07.2020 - Develop - v1.0.5
+* Добавлены clusterrole и clusterrolebinding для Chart'ов usersapi и mysql
 * Приложение VisualOffce и gitlab вынесены в отдельный namespace - application
 
 ### 21.07.2020 - Develop - v1.0.4

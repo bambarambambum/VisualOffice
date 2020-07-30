@@ -1,41 +1,62 @@
 .PHONY: docker terraform
 
-before_run:
-	cd scripts && \
-	./prepare.sh
-
-run: docker terraform helm
+run: helm gitlab docker terraform restore_dump dns cluster-issuer-staging
 
 destroy: no_terraform
 
-terraform:
-	cd terraform && \
-	./run.sh
+# Env
+before_run: before_run_prepare before_run_auth
+
+before_run_prepare:
+	./scripts/env/prepare.sh
+before_run_auth:
+	./scripts/env/authorizate.sh
+
+# Terraform
+terraform: terraform_prepare_vars terraform_deploy terraform_helm
+
+terraform_prepare_vars:
+	./scripts/terraform/prepare_vars.sh
+terraform_deploy:
+	./scripts/terraform/create_cluster.sh
+terraform_helm:
+	./scripts/terraform/deploy_helm.sh
 
 no_terraform:
-	cd terraform && \
-	./destroy.sh
+	./scripts/terraform/destroy.sh
 
+# Docker
 docker:
-	cd scripts && \
-	./docker.sh
+	./scripts/docker/docker.sh
 
-## Helm
-deb_helm:
-	cd kubernetes/charts && \
-	helm dep update visualoffice && \
-	echo "${GREEN}Helm dependencies updated.${NORMAL}"
+# Helm
+helm: helm_fetch_charts helm_prepare_charts
 
-helm:
-	cd scripts && \
-	./helm.sh
+helm_fetch_charts:
+	./scripts/charts/fetch_charts.sh
+helm_prepare_charts:
+	./scripts/charts/prepare_charts_template.sh
 
-### Debug
-#upgrade_prometheus:
-#	cd kubernetes/charts && \
-#	helm upgrade ${PROM_NAME} -f prometheus/custom_values.yaml prometheus && \
-#	echo "${GREEN}Chart ${PROM_NAME} upgraded.${NORMAL}"
+# Mysql
+restore_dump:
+	./scripts/env/dump.sh
 
-#restore_db:
-#	POD=kubectl get pod -o=jsonpath='{.items..metadata.name}' | awk '{print $1}' | grep mysql && \
-#	kubectl exec -it ${POD} -- bash -c "mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE} < /home/visualoffice.sql"
+# Gitlab
+gitlab:
+	./scripts/gitlab/prepare_gitlab_ci.sh
+
+# DNS
+dns: create_dns_zone create_dns_a_records
+
+create_dns_zone:
+	./scripts/dns/create_dns_zone.sh
+create_dns_a_records:
+	./scripts/dns/create_dns_zone_records.sh
+
+# Cert-manager
+cluster-issuer-staging:
+	kubectl apply -f kubernetes/cluster-Issuer-staging.yml
+
+#cluster-issuer-production:
+#	kubectl apply -f kubernetes/cluster-Issuer-production.yml && \
+#	./scripts/charts/cert-manager_production.sh

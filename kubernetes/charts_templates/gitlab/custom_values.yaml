@@ -40,7 +40,7 @@ global:
     allowClusterRoles: true
   ## doc/charts/globals.md#configure-host-settings
   hosts:
-    domain: visualoffice.tk
+    domain: replace_domain
     hostSuffix:
     https: true
     externalIP:
@@ -527,7 +527,7 @@ upgradeCheck:
 certmanager-issuer:
 #   # The email address to register certificates requested from Let's Encrypt.
 #   # Required if using Let's Encrypt.
-  email: Mikh.Androsov@gmail.com
+  email: replace_email
 
 ## Installation & configuration of jetstack/cert-manager
 ## See requirements.yaml for current version
@@ -687,6 +687,7 @@ gitlab-runner:
 ## See requirements.yaml for current version
 ## Controlled by `global.grafana.enabled`
 grafana:
+  enabled: false
   ## Override and provide "bogus" administation secrets
   ## gitlab/gitlab-grafana provides overrides via shared-secrets
   admin:

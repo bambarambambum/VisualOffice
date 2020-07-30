@@ -7,7 +7,7 @@
 | Ключ | Значение | Описание |
 | ------ | ------ | ----- |
 | rbac: |  |  |
-| create: | false | Не использовать Role-based access control |
+| create: | true | Role-based access control |
 | alertmanager: | | |
 | enabled: | true | Включить alertmanager |
 | nodeExporter: | | |
@@ -17,7 +17,10 @@
 | Server: | | |
 | ingress: | | |
 | enabled: | true | Включить ingress для Prometheus |
-| hosts: | prometheus.visualoffice.tk | Имя хоста |
+| annotations: | | |
+| kubernetes.io/ingress.class: | nginx | Тип ingress |
+| cert-manager.io/cluster-issuer: | letsencrypt-staging | Выпуск fake-сертификатов (или letsencrypt-production для выпуска настоящих сертификатов) |
+| hosts: | prometheus.domain.local | Имя хоста |
 ## Алерты
 Добавлены следующие алерты:
 * Группа Prometheus
@@ -45,9 +48,25 @@
 * job_name: 'webappsite-endpoints' - Группа метрик сервиса webappsite.
 * job_name: 'userspapi-endpoints' - Группа метрик сервиса usersapi.
 * job_name: 'mysql-exporter-endpoints' - Группа метрик MySQL, получаемых с помощью mysql-exporter.
-* job_name: 'visualoffice-default' - Группа метрик сервисов приложения VisualOffice
+* job_name: 'visualoffice-application' - Группа метрик сервисов приложения VisualOffice
 * job_name: 'visualoffice-production' - Группа метрик сервисов приложения VisualOffice в namespace'e production
 * job_name: 'visualoffice-staging' - Группа метрик сервисов приложения VisualOffice в namespace'e staging
+## Конфигурация alertmanager для оповещений в Slack
+Для работы оповещений, необходимо внести следующие данные в custom_values.yaml:
+```
+...
+alertmanagerFiles:
+  alertmanager.yml:
+    global:
+      slack_api_url: "enter_slack_api"
+
+    receivers:
+      - name: default-receiver
+        slack_configs:
+        - channel: '#your-channel'
+      send_resolved: true
+...
+```
 
 ### Запускаем
 * Убедитесь, что установлен helm3, kubectl

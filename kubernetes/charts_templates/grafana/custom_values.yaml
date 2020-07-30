@@ -133,13 +133,13 @@ ingress:
   # Values can be templated
   annotations:
     kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-production
+    cert-manager.io/cluster-issuer: letsencrypt-staging
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   labels: {}
   path: /
   hosts:
-    - grafana.visualoffice.tk
+    - replace_hosts
   ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
   extraPaths: []
   # - path: /*
@@ -147,9 +147,9 @@ ingress:
   #     serviceName: ssl-redirect
   #     servicePort: use-annotation
   tls: #[]
-    - secretName: letsencrypt-production
+    - secretName: letsencrypt-staging
       hosts:
-        - grafana.visualoffice.tk
+        - replace_hosts
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local

@@ -1,2 +1,2 @@
 # Prometheus MySQL Exporter
-Экспортер для MySQL
+Экспортер для Prometheus, собирающие метрики из MySQL.

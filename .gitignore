@@ -6,7 +6,13 @@
 *.terraform.tfstate.lock.info
 
 # Charts
+kubernetes/charts/gitlab
+kubernetes/charts/grafana
+kubernetes/charts/prometheus
+kubernetes/charts/prometheus-mysql-exporter
 secret.yaml
+certificate-visualoffice.yml
+cluster-Issuer-production.yml
 
 # Application
 VisualOffice-App/
@@ -21,4 +27,4 @@ gitlab_ci/visualoffice/
 gitlab_ci/visualoffice-deploy/
 
 # Scripts
-scripts/helm.sh
+scripts/env/environment.sh
