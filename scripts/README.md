@@ -46,3 +46,5 @@ $ make run
 * /scripts/dns/create_dns_zone.sh - Создание зоны Cloud DNS.
 * /scripts/dns/create_dns_zone_records.sh - Создание А-записей в DNS зоне.
 * kubectl apply -f kubernetes/cluster-Issuer-staging.yml - Выпуск fake-сертификатов для VisualOffice, Grafana, Prometheus.
+* kubectl create clusterrolebinding gitlab-cluster-admin --clusterrole=cluster-admin --group=system:serviceaccounts - Права доступа для Gitlab.
+* /scripts/gitlab/prepare_gitlab_ci.sh - Отправка файлов в репозиторий Gitlab, для запуска pipeline'ов. Запускается вручную после подготовки Gitlab.

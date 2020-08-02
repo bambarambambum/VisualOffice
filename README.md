@@ -64,9 +64,9 @@ $ make destroy
 * - Логин: admin
 * - Пароль: admin
 
+## Подготовка Gitlab
 <details><summary>Подготовка Gitlab</summary>
 
-## Подготовка Gitlab
 1) Необходимо авторизоваться в https://gitlab.example.com/
 Для получения пароля root воспользуйтесь следующей командой:  
 ```kubectl get secret -n application gitlab-gitlab-initial-root-password -ojsonpath='{.data.password}' | base64 --decode ; echo```
@@ -95,22 +95,9 @@ release_deploy:
         -F ref="$REF" \
         https://gitlab.$URL/api/v4/projects/2/trigger/pipeline <-------- URL вызова триггера
 ```
-4) В папке gitlab_ci/visualoffice сделать:
+4) Для запуска pipeline'ов, нужно отправить файлы в репозитории. Делаем это командой:
 ```sh
-$ git init
-$ git remote add origin https://gitlab.example.com/docker_hub_login/visualoffice.git
-$ git checkout -b feature/test
-$ git add .
-$ git commit -m "Test CI"
-$ git push origin feature/test
-```
-5) В папке gitlab_ci/visualoffice-deploy сделать
-```sh
-$ git init
-$ git remote add origin https://gitlab.example.com/docker_hub_login/visualoffice-deploy.git
-$ git add .
-$ git commit -m "Test CD"
-$ git push origin master
+make gitlab_prepare_repo
 ```
 5) Теперь можно проверять pipeline'ы
 </details>

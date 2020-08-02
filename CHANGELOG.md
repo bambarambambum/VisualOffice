@@ -1,5 +1,17 @@
 # VisualOffice changelog
 
+### 02.08.2020 - Develop - v1.1.3
+* Исправлены ошибки в /scripts/env/prepare.sh
+* Исправлены ошибки в /scripts/charts/fetch_charts.sh
+* Исправлены ошибки в /scripts/docker/docker.sh
+* Файл visualoffice/scripts/dns/create_dns_zone.sh отмечен как исполняемый.
+* Добавлен скрипт /scripts/gitlab/start_cicd.sh
+* Добавлена команда gitlab_prepare_repo в Makefile
+* Исправлена ошибка с копированием дашбоардов в /scripts/charts/prepare_charts_template.sh
+* Доработан /gitlab_ci/README.md
+* Доработан /scripts/README.md
+* Доработан README.md
+
 ### 30.07.2020 - Develop - v1.1.2
 * Стилистические правки, исправление опечаток и форматирования во всех README.md
 

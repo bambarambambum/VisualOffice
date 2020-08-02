@@ -9,7 +9,6 @@ sudo apt install curl unzip -y
 echo -e "${GREEN}Устанавливаем Docker...${NORMAL}"
 sudo apt install docker.io -y
 sudo gpasswd -a $USER docker
-sudo newgrp docker
 echo -e "${GREEN}Устанавливаем Google Cloud SDK...${NORMAL}"
 echo -e "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
@@ -26,6 +25,6 @@ rm -r linux-amd64
 rm helm-v3.2.4-linux-amd64.tar.gz
 echo -e "${GREEN}Устанавливаем Terraform...${NORMAL}"
 curl -O https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
-unzip terraform_0.12.28_linux_amd64.zip
+sudo unzip terraform_0.12.28_linux_amd64.zip -d /usr/local/bin/
 rm terraform_0.12.28_linux_amd64.zip
-sudo mv terraform /usr/local/bin/terraform
+sudo service docker restart

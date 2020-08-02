@@ -8,7 +8,7 @@ helm repo update
 echo -e "${GREEN}Добавление репозиториев Helm завершено!${NORMAL}"
 echo -e "${GREEN}Устанавливаем необходимые Helm Chart'ы...${NORMAL}"
 cd kubernetes/charts
-helm fetch stable/gitlab --untar
+helm fetch gitlab/gitlab --untar
 helm fetch stable/grafana --untar
 helm fetch stable/prometheus --untar
 helm fetch stable/prometheus-mysql-exporter --untar

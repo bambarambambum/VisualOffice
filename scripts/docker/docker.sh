@@ -3,7 +3,7 @@ set -e
 
 # Webappsite
 echo -e "${GREEN}Начата сборка образа ${APP_NAME}/webappsite...${NORMAL}"
-cd ../../gitlab_ci/visualoffice/src/WebAppSite
+cd gitlab_ci/visualoffice/src/WebAppSite
 docker build -t ${USER_NAME}/webappsite -f Dockerfile.linux .
 echo -e "${GREEN}Сборка образа ${APP_NAME}/webappsite завершена.${NORMAL}"
 echo -e "${GREEN}Начата публикация образа ${APP_NAME}/webappsite...${NORMAL}"

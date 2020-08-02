@@ -6,7 +6,7 @@ echo -e "${GREEN}Копирование шаблонов начато...${NORMAL
 # Services
 ## Grafana
 cp kubernetes/charts_templates/grafana/custom_values.yaml kubernetes/charts/grafana/custom_values.yaml
-cp -R kubernetes/charts_templates/grafana/dashboards kubernetes/charts/grafana/dashboards
+cp -R kubernetes/charts_templates/grafana/dashboards kubernetes/charts/grafana
 ## Gitlab
 cp kubernetes/charts_templates/gitlab/custom_values.yaml kubernetes/charts/gitlab/custom_values.yaml
 ## Prometheus

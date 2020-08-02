@@ -1,6 +1,6 @@
 .PHONY: docker terraform
 
-run: helm gitlab docker terraform restore_dump dns cluster-issuer-staging
+run: helm gitlab docker terraform restore_dump dns cluster-issuer-staging gitlab_rbac
 
 destroy: no_terraform
 
@@ -44,6 +44,10 @@ restore_dump:
 # Gitlab
 gitlab:
 	./scripts/gitlab/prepare_gitlab_ci.sh
+gitlab_prepare_repo:
+	./scripts/gitlab/start_cicd.sh
+gitlab_rbac:
+	kubectl create clusterrolebinding gitlab-cluster-admin --clusterrole=cluster-admin --group=system:serviceaccounts
 
 # DNS
 dns: create_dns_zone create_dns_a_records
