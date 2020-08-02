@@ -5,9 +5,8 @@
 ## Остановитесь на мгновение...
 Для запуска проекта вам необходим домен! :confused:  
 Что делать? Прежде чем продолжить, сделайте следующее: [README_DOMAIN.md](https://github.com/bambarambambum/VisualOffice/blob/master/README_DOMAIN.md)  
-## Screencast (old version)
-
-https://www.youtube.com/watch?v=WajkV-tcnCE
+## Screencast v2
+https://youtu.be/uXq3ki_hlVU
 
 ## Инструменты и компоненты
 Про каждый инструмент и/или компонент вы можете почитать подробнее.
