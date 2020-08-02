@@ -27,4 +27,4 @@ echo -e "${GREEN}Устанавливаем Terraform...${NORMAL}"
 curl -O https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
 sudo unzip terraform_0.12.28_linux_amd64.zip -d /usr/local/bin/
 rm terraform_0.12.28_linux_amd64.zip
-sudo service docker restart
+newgrp docker

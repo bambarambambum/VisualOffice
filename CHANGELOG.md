@@ -1,5 +1,9 @@
 # VisualOffice changelog
 
+### 02.08.2020 - v2.0.4
+* Доработан скрипт prepare_charts_template.sh
+* Изменен README.md
+
 ### 02.08.2020 - v2.0.3
 * Добавлен build статус Travis CI (шильдик)
 

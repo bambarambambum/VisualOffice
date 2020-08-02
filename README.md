@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.com/bambarambambum/visualoffice-.svg?branch=master)](https://travis-ci.com/bambarambambum/visualoffice-)  
 ### VisualOffice - Практики и инструменты DevOps
-
 Финальный проект по отработке практик и инструментов DevOps  
 
 ## Остановитесь на мгновение...
@@ -42,7 +41,8 @@ $ git clone https://github.com/bambarambambum/VisualOffice
 ## Запуск проекта
 1) Подготавливаем окружение.
 ```sh
-$ make before_run
+$ make before_run_prepare
+$ make before_run_auth
 ```
 Вводим все учетные данные и пароли, которые будут затребованы.  
 ***Теперь из директории visualoffice вводим команду которая применит переменные окружения:***

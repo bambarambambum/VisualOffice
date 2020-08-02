@@ -55,5 +55,8 @@ sed -i "s/replace_database/$MYSQL_DATABASE/g" kubernetes/charts/usersapi/templat
 ## Webappsite
 sed -i "s/replace_dockerhub_username/$USER_NAME/g" kubernetes/charts/webappsite/values.yaml
 sed -i "s/replace_hosts/$APP_NAME.$DNS_DOMAIN_NAME/g" kubernetes/charts/webappsite/values.yaml
+## Update VisualOffice Chart
+cd kubernetes/charts
+helm dep update visualoffice/
 
 echo -e "${GREEN}Замена предустановленных значений завершена!${NORMAL}"
