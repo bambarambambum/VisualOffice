@@ -1,5 +1,8 @@
 # VisualOffice changelog
 
+### 02.08.2020 - Develop - v1.1.4
+* Добавлены тесты .travis.yml
+
 ### 02.08.2020 - Develop - v1.1.3
 * Исправлены ошибки в /scripts/env/prepare.sh
 * Исправлены ошибки в /scripts/charts/fetch_charts.sh
