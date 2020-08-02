@@ -11,9 +11,9 @@ C помощью docker происходит сборка нового обра�
 ### Запускаем
 Сборка образа (из папки docker/mysql)
 ```sh
-$ docker build -t androsovm/mysql .
+$ docker build -t docker_hub_username/mysql .
 ```
 Публикуем:
 ```sh
-$ docker push androsovm/mysql
+$ docker push docker_hub_username/mysql
 ```

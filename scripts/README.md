@@ -1,8 +1,9 @@
 # Скрипты
 ## Файловая схема
 - charts
-- - fetch_charts.sh - скачивание и распакова Helm Chart'ов.
-- - prepare_charts_template.sh - копирование и подготовка шаблонов Helm Chart'ов для их использования.
+- - fetch_charts.sh - Скачивание и распакова Helm Chart'ов.
+- - prepare_charts_template.sh - Копирование и подготовка шаблонов Helm Chart'ов для их использования.
+- - cert-manager_production.sh - Подготовка Helm Chart'ов для работы с настоящими сертификатами (не работает).
 - dns
 - - create_dns_zone_records.sh - Создание необходимых А записей.
 - - create_dns_zone.sh - Создание зоны DNS в Cloud DNS.
@@ -12,13 +13,15 @@
 - - authorizate.sh - Авторизация и аутентификация в необходимых службах и сервисах.
 - - environment.sh - Переменные среды.
 - - prepare.sh - Подготовка системы к запуску проекта (обновление системы, установка нужных приложений).
+- - dump.sh - Импорт дампа базы данных приложения VisualOffce.
 - gitlab
-- - prepare_gitlab_ci.sh - Подготовка репозиториев для Gitlab CI/CD
+- - prepare_gitlab_ci.sh - Подготовка репозиториев для Gitlab CI/CD.
+- - start_cicd.sh - Запуск CI/CD.
 - terraform
 - - create_cluster.sh - Создание кластера Kubernetes.
 - - deploy_helm.sh - Развертывание Helm Chart'ов
 - - destroy.sh - Уничтожение кластера Kubernetes.
-- - prepare_vars.sh - Подготовка файла terraform.tfvars
+- - prepare_vars.sh - Подготовка файла terraform.tfvars.
 ## Запуск
 1) Указываем все необходимые значения в файле env/environment.sh.  
 Применяем:

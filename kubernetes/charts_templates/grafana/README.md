@@ -1,6 +1,6 @@
 # Grafana
 Grafana используется для визуализации метрик с мониторинга Prometheus.  
-При запуске Grafana сразу же импортируются дашбоарды и datasource Prometheus
+При запуске Grafana сразу же импортируются дашбоарды и datasource Prometheus.  
 Учетные данные при первичном входе:  
 Логин: admin  
 Пароль: admin  
@@ -31,7 +31,7 @@ Grafana используется для визуализации метрик с
 
 ## Конфигурация и запуск
 Необходимо убедиться что в **custom_values.yaml** в блоке **ingress:**, указано правильное имя хоста в значении **hosts:**  
-```grafana.visualoffice.tk```
+```grafana.visualoffice.tk```  
 Grafana запускается вместе с остальными Helm Chart'ами. Однако, если нужно запустить Grafana отдельно:
 ```sh
 $ helm install grafana -f grafana/custom_values.yaml grafana -n monitoring

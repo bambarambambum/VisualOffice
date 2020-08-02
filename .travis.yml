@@ -17,9 +17,11 @@ before_install:
 script:
 # Terraform
 - cd terraform/kubernetes
+- terraform init
 - terraform validate
 - tflint
 - cd ../helm
+- terraform init
 - terraform validate
 - tflint
 # Helm
@@ -29,6 +31,7 @@ script:
 - helm lint visualoffice
 - helm lint webappsite
 # Shellcheck
+- cd ../..
 - shellcheck scripts/charts/cert-manager_production.sh
 - shellcheck scripts/charts/fetch_charts.sh
 - shellcheck scripts/charts/prepare_charts_template.sh
