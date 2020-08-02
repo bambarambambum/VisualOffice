@@ -3,7 +3,7 @@
 
 ## Остановитесь на мгновение...
 Для запуска проекта, вам необходим домен! :confused:  
-Что делать? Прежде чем продолжить, сделайте следующее: [README_DOMAIN.md](https://github.com/bambarambambum/VisualOffice/blob/develop/README_DOMAIN.md)  
+Что делать? Прежде чем продолжить, сделайте следующее: [README_DOMAIN.md](https://github.com/bambarambambum/VisualOffice/blob/master/README_DOMAIN.md)  
 ## Screencast (old version)
 
 https://www.youtube.com/watch?v=WajkV-tcnCE
@@ -12,14 +12,14 @@ https://www.youtube.com/watch?v=WajkV-tcnCE
 Про каждый инструмент и/или компонент вы можете почитать подробнее.
 | Инструмент/Компонент | Описание |
 | ------ | ------ |
-| Terraform | [terraform/README.md](https://github.com/bambarambambum/VisualOffice/tree/develop/terraform) |
-| Helm Charts | [kubernetes/README.md](https://github.com/bambarambambum/VisualOffice/blob/develop/kubernetes) |
-| Prometheus | [kubernetes/charts_templates/prometheus/README.md](https://github.com/bambarambambum/VisualOffice/blob/develop/kubernetes/charts_templates/prometheus) |
-| Prometheus Mysql Exporter | [kubernetes/charts_templates/prometheus-mysql-exporter/README.md](https://github.com/bambarambambum/VisualOffice/blob/develop/kubernetes/charts_templates/prometheus-mysql-exporter) |
-| Grafana | [kubernetes/charts_templates/grafana/README.md](https://github.com/bambarambambum/VisualOffice/blob/develop/kubernetes/charts_templates/grafana) |
-| Gitlab CI/CD | [gitlab_ci/README.md](https://github.com/bambarambambum/VisualOffice/blob/develop/gitlab_ci) |
-| Docker | [docker/README.md](https://github.com/bambarambambum/VisualOffice/blob/develop/docker) |
-| Скрипты | [scripts/README.md](https://github.com/bambarambambum/VisualOffice/blob/develop/scripts) |
+| Terraform | [terraform/README.md](https://github.com/bambarambambum/VisualOffice/tree/master/terraform) |
+| Helm Charts | [kubernetes/README.md](https://github.com/bambarambambum/VisualOffice/blob/master/kubernetes) |
+| Prometheus | [kubernetes/charts_templates/prometheus/README.md](https://github.com/bambarambambum/VisualOffice/blob/master/kubernetes/charts_templates/prometheus) |
+| Prometheus Mysql Exporter | [kubernetes/charts_templates/prometheus-mysql-exporter/README.md](https://github.com/bambarambambum/VisualOffice/blob/master/kubernetes/charts_templates/prometheus-mysql-exporter) |
+| Grafana | [kubernetes/charts_templates/grafana/README.md](https://github.com/bambarambambum/VisualOffice/blob/master/kubernetes/charts_templates/grafana) |
+| Gitlab CI/CD | [gitlab_ci/README.md](https://github.com/bambarambambum/VisualOffice/blob/master/gitlab_ci) |
+| Docker | [docker/README.md](https://github.com/bambarambambum/VisualOffice/blob/master/docker) |
+| Скрипты | [scripts/README.md](https://github.com/bambarambambum/VisualOffice/blob/master/scripts) |
 | Приложение VisualOffice | https://github.com/bambarambambum/VisualOffice-App |
 ## Подготовка
 Клонируем репозиторий
