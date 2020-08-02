@@ -20,10 +20,6 @@ script:
 - terraform init
 - terraform validate
 - tflint
-- cd ../helm
-- terraform init
-- terraform validate
-- tflint
 # Helm
 - cd ../../kubernetes/charts
 - helm lint mysql

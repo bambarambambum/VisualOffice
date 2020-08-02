@@ -2,7 +2,7 @@
 Финальный проект по отработке практик и инструментов DevOps  
 
 ## Остановитесь на мгновение...
-Для запуска проекта, вам необходим домен! :confused:  
+Для запуска проекта вам необходим домен! :confused:  
 Что делать? Прежде чем продолжить, сделайте следующее: [README_DOMAIN.md](https://github.com/bambarambambum/VisualOffice/blob/master/README_DOMAIN.md)  
 ## Screencast (old version)
 
