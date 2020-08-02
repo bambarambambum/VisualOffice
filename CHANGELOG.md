@@ -1,6 +1,9 @@
 # VisualOffice changelog
 
 ### 02.08.2020 - v2.0.3
+* Добавлен build статус Travis CI (шильдик)
+
+### 02.08.2020 - v2.0.3
 * Еще пару корректировок в README.md
 * Исправлены ошибки в .travis.yml
 

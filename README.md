@@ -1,4 +1,5 @@
 ### VisualOffice - Практики и инструменты DevOps
+[![Build Status](https://travis-ci.com/bambarambambum/visualoffice-.svg?branch=master)](https://travis-ci.com/bambarambambum/visualoffice-)
 Финальный проект по отработке практик и инструментов DevOps  
 
 ## Остановитесь на мгновение...
