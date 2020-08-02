@@ -1,5 +1,8 @@
 # VisualOffice changelog
 
+### 02.08.2020 - v2.0.0
+* Слияние develop в master
+
 ### 02.08.2020 - Develop - v1.1.4
 * Добавлены тесты .travis.yml
 
