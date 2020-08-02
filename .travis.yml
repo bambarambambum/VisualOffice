@@ -1,0 +1,46 @@
+dist: trusty
+sudo: required
+language: bash
+before_install:
+- sudo apt-get update
+- sudo apt-get install google-cloud-sdk --allow-unauthenticated
+- curl -O "https://get.helm.sh/helm-v3.2.4-linux-amd64.tar.gz"
+- tar -xzf helm-v3.2.4-linux-amd64.tar.gz -C . linux-amd64/helm
+- sudo mv linux-amd64/helm /usr/local/bin/helm
+- rm -r linux-amd64
+- rm helm-v3.2.4-linux-amd64.tar.gz
+- curl -O https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
+- sudo unzip terraform_0.12.28_linux_amd64.zip -d /usr/local/bin/
+- rm terraform_0.12.28_linux_amd64.zip
+- sudo curl https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+- sudo apt install shellcheck
+script:
+# Terraform
+- cd terraform/kubernetes
+- terraform validate
+- tflint
+- cd ../helm
+- terraform validate
+- tflint
+# Helm
+- cd ../../kubernetes/charts
+- helm lint mysql
+- helm lint usersapi
+- helm lint visualoffice
+- helm lint webappsite
+# Shellcheck
+- shellcheck scripts/charts/cert-manager_production.sh
+- shellcheck scripts/charts/fetch_charts.sh
+- shellcheck scripts/charts/prepare_charts_template.sh
+- shellcheck scripts/dns/create_dns_zone.sh
+- shellcheck scripts/dns/create_dns_zone_records.sh
+- shellcheck scripts/docker/docker.sh
+- shellcheck scripts/env/authorizate.sh
+- shellcheck scripts/env/dump.sh
+- shellcheck scripts/env/prepare.sh
+- shellcheck scripts/gitlab/prepare_gitlab_ci.sh
+- shellcheck scripts/gitlab/start_cicd.sh
+- shellcheck scripts/terraform/create_cluster.sh
+- shellcheck scripts/terraform/deploy_helm.sh 
+- shellcheck scripts/terraform/destroy.sh 
+- shellcheck scripts/terraform/prepare_vars.sh
